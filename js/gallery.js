@@ -84,4 +84,19 @@ const images = [
     }
      createGalleryItems(images);
     
-    
+     const gallery = document.querySelector('.gallery');
+     gallery.addEventListener('click', event => {
+         event.preventDefault();
+     
+         if (event.target.nodeName !== 'IMG') {
+           return;
+         }
+     
+         const largeImageURL = event.target.getAttribute('data-source');
+     
+         const instance = basicLightbox.create(`
+           <img src="${largeImageURL}" width="800" height="600">
+         `);
+     
+         instance.show();
+       });
